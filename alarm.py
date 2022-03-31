@@ -4,7 +4,7 @@ from time import sleep
 
 while 1:
     try:
-        response = urllib.request.urlopen('https://geospect.com')
+        response = urllib.request.urlopen('https://expertcoders.net')
         break        
     except:
         print("Internet Not Connected")
@@ -13,7 +13,7 @@ while 1:
         print("Checking Internet")
     sleep(10)    
 while 1:
-    subprocess.call("/home/mike/bin/beep.sh", shell=True)
+    subprocess.call("bash noise.sh", shell=True)
     print("Internet is now working")
     sleep(1)
     
