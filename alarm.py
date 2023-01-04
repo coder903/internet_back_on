@@ -1,20 +1,19 @@
-import urllib.request
-import subprocess
+import platform, urllib.request, subprocess
+from win32com.client import Dispatch
 from time import sleep
 
 while 1:
     try:
-        response = urllib.request.urlopen('https://expertcoders.net') #Try to connect to a website
-        break #If it does not throw an error break out of loop
+        response = urllib.request.urlopen('https://expertcoders.net') # try to connect to a website
+        if platform.system() == 'Windows':
+            Dispatch("SAPI.Spvoice").Speak("Internet is on!")
+        else:
+            subprocess.call("bash noise.sh", shell=True)
+
     except:
-        #Couldn't connect. Error thrown
-        print("Internet Not Connected")
-        sleep(5)
-        subprocess.call("clear")
-        print("Checking Internet")
-    sleep(10)    
-while 1: #Internet must be on because we are here
-    subprocess.call("bash noise.sh", shell=True) #Make noise
-    print("Internet is now working")
-    sleep(1)
-    
+        # not connected, so we're here
+        if platform.system() == 'Windows':
+            Dispatch("SAPI.Spvoice").Speak("Internet is off")
+        else:
+            subprocess.call("clear")
+    sleep(10)
